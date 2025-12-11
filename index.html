@@ -1,335 +1,681 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="be-tarask" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram pa-biełarusku</title>
-    <meta name="description" content="Клясычны беларускі пераклад для Telegram.">
-    
-    <!-- 1. Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- 2. Configuration (Павінна быць пасля Tailwind) -->
-    <script src="config.js"></script>
-    
-    <!-- 3. Icons (CDN) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>Telegram pa-biełarusku</title>
+        <meta
+            name="description"
+            content="Клясычны беларускі пераклад для Telegram."
+        />
+        <meta
+            name="theme-color"
+            content="#ffffff"
+            media="(prefers-color-scheme: light)"
+        />
+        <meta
+            name="theme-color"
+            content="#17212b"
+            media="(prefers-color-scheme: dark)"
+        />
 
-    <!-- 4. Custom Styles -->
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-tg-secondary text-tg-text transition-colors duration-300 dark:bg-tg-secondaryDark dark:text-tg-textDark font-sans antialiased min-h-screen flex flex-col">
+        <!-- 1. Tailwind CSS (CDN) -->
+        <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Header -->
-    <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-tg-bg/80 dark:bg-tg-cardDark/80 border-b border-gray-200 dark:border-black/10 transition-colors duration-300">
-        <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
-            <div class="flex items-center gap-2 font-bold text-lg text-tg-text dark:text-tg-textDark">
-                <div class="w-8 h-8 rounded-full bg-tg-blue flex items-center justify-center text-white">
-                    <i data-lucide="send" class="w-4 h-4 -ml-0.5 fill-current"></i>
-                </div>
-                <span>Telegram <span class="text-tg-blue dark:text-tg-blueDark font-normal">Belarus</span></span>
-            </div>
-            
-            <div class="flex items-center gap-3">
-                <!-- Language Switcher -->
-                <div class="bg-tg-secondary dark:bg-black/20 rounded-lg p-1 flex text-xs font-medium">
-                    <button onclick="setLanguage('cyr')" id="btn-cyr" class="px-2 py-1 rounded-md transition-all text-tg-hint hover:text-tg-text dark:text-tg-hintDark dark:hover:text-white">Кірыліца</button>
-                    <button onclick="setLanguage('lat')" id="btn-lat" class="px-2 py-1 rounded-md transition-all text-tg-hint hover:text-tg-text dark:text-tg-hintDark dark:hover:text-white">Łacinka</button>
-                </div>
+        <!-- 2. Configuration -->
+        <script src="config.js"></script>
 
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-tg-hint dark:text-tg-hintDark">
-                    <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
-                    <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+        <!-- 3. Icons (CDN) -->
+        <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Main Content -->
-    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-8 md:py-12 space-y-12">
-        
-        <!-- Hero Section -->
-        <section class="text-center space-y-6 animate-fade-in">
-            <h1 class="text-3xl md:text-5xl font-bold leading-tight">
-                <span data-key="hero_title_1">Тэлеграм па-беларуску.</span> <br>
-                <span class="text-tg-blue dark:text-tg-blueDark" data-key="hero_title_2">Клясычным правапісам.</span>
-            </h1>
-            <p class="text-lg text-tg-hint dark:text-tg-hintDark max-w-2xl mx-auto" data-key="hero_desc">
-                Далучайцеся да стварэньня і тэставаньня лякалізацыі Better Belarusian. 
-                Зробім наш улюбёны мэсэнджар родным разам.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-3 justify-center pt-4">
-                <button class="px-6 py-3 bg-tg-blue hover:bg-blue-600 text-white rounded-full font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30">
-                    <i data-lucide="download" class="w-5 h-5"></i>
-                    <span data-key="btn_install">Усталяваць мову</span>
-                </button>
-                <button class="px-6 py-3 bg-white dark:bg-tg-cardDark hover:bg-gray-50 dark:hover:bg-white/5 text-tg-blue dark:text-tg-blueDark border border-tg-blue/20 dark:border-white/10 rounded-full font-medium transition-transform active:scale-95 flex items-center justify-center gap-2">
-                    <i data-lucide="users" class="w-5 h-5"></i>
-                    <span data-key="btn_help">Дапамагчы перакладу</span>
-                </button>
-            </div>
-        </section>
-
-        <!-- Progress Section -->
-        <section class="animate-fade-in" style="animation-delay: 0.1s;">
-            <div class="bg-tg-card dark:bg-tg-cardDark rounded-2xl shadow-sm border border-gray-100 dark:border-none p-6 md:p-8 overflow-hidden relative">
-                
-                <!-- Background Decoration -->
-                <div class="absolute top-0 right-0 w-64 h-64 bg-tg-blue/5 dark:bg-tg-blueDark/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-
-                <div class="relative z-10">
-                    <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
-                        <i data-lucide="bar-chart-2" class="w-6 h-6 text-tg-blue dark:text-tg-blueDark"></i>
-                        <span data-key="stats_title">Статус перакладу</span>
-                    </h2>
-
-                    <!-- Main Grid -->
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        
-                        <!-- Left: Info -->
-                        <div class="space-y-6">
-                            <!-- Platform Item -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 shrink-0">
-                                    <i data-lucide="smartphone" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-tg-hint dark:text-tg-hintDark" data-key="label_platform">Плятформа</p>
-                                    <p class="font-medium text-lg">Android</p>
-                                </div>
-                            </div>
-
-                            <!-- Language Item -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400 shrink-0">
-                                    <i data-lucide="languages" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-tg-hint dark:text-tg-hintDark" data-key="label_lang_name">Назва лякалізацыі</p>
-                                    <p class="font-medium text-lg">Better Belarusian</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Status Badge -->
-                            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">
-                                <span class="relative flex h-2 w-2">
-                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                                  <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                                </span>
-                                <span data-key="status_process">У працэсе</span>
-                            </div>
-                        </div>
-
-                        <!-- Right: Visual Progress -->
-                        <div class="bg-tg-secondary dark:bg-tg-bgDark p-6 rounded-xl border border-gray-100 dark:border-white/5">
-                            <div class="flex justify-between items-end mb-2">
-                                <span class="text-3xl font-bold text-tg-blue dark:text-tg-blueDark">0.91%</span>
-                                <span class="text-sm text-tg-hint dark:text-tg-hintDark mb-1" data-key="label_done">Гатова</span>
-                            </div>
-
-                            <!-- Progress Bar Container -->
-                            <div class="h-4 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-3 relative">
-                                <div class="h-full bg-gradient-to-r from-tg-blue to-cyan-400 dark:from-tg-blueDark dark:to-cyan-600 rounded-full animate-fill-bar relative" style="--target-width: 5%"> 
-                                    <div class="absolute right-0 top-0 bottom-0 w-[2px] bg-white/50 shadow-[0_0_10px_rgba(255,255,255,0.8)]"></div>
-                                </div>
-                            </div>
-
-                            <div class="flex justify-between text-sm">
-                                <span class="font-medium"><span data-key="count_phrases">93 фраз</span></span>
-                                <span class="text-tg-hint dark:text-tg-hintDark"><span data-key="count_total">з 10 207</span></span>
-                            </div>
-                            
-                            <p class="mt-4 text-xs text-tg-hint dark:text-tg-hintDark leading-relaxed" data-key="progress_desc">
-                                Гэта толькі пачатак вялікага шляху. Дапамажыце нам перакласьці астатнія 10 тысяч радкоў, каб кожны беларус мог карыстацца зручным інтэрфэйсам.
-                            </p>
-                        </div>
-
+        <!-- 4. Custom Styles -->
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body
+        class="bg-tg-secondary text-tg-text transition-colors duration-300 dark:bg-tg-secondaryDark dark:text-tg-textDark font-sans antialiased min-h-screen flex flex-col overflow-x-hidden"
+    >
+        <!-- Header -->
+        <header
+            class="sticky top-0 z-50 w-full backdrop-blur-md bg-tg-bg/90 dark:bg-tg-cardDark/90 border-b border-gray-200 dark:border-black/10 transition-colors duration-300 supports-[backdrop-filter]:bg-tg-bg/60"
+        >
+            <div
+                class="max-w-4xl mx-auto px-4 h-16 md:h-14 flex items-center justify-between"
+            >
+                <!-- Logo -->
+                <div
+                    class="flex items-center gap-2 font-bold text-lg text-tg-text dark:text-tg-textDark shrink-0"
+                >
+                    <div
+                        class="w-8 h-8 rounded-full bg-tg-blue flex items-center justify-center text-white shadow-sm"
+                    >
+                        <i
+                            data-lucide="send"
+                            class="w-4 h-4 -ml-0.5 fill-current"
+                        ></i>
                     </div>
-                </div>
-            </div>
-
-            <!-- Other Platforms Info -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                <!-- iOS -->
-                <div class="bg-tg-card dark:bg-tg-cardDark p-4 rounded-xl border border-gray-100 dark:border-none flex items-center justify-between opacity-80 hover:opacity-100 transition-opacity">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 flex items-center justify-center text-tg-text dark:text-tg-textDark">
-                            <i data-lucide="apple" class="w-4 h-4 fill-current"></i>
-                        </div>
-                        <span class="font-medium text-tg-text dark:text-tg-textDark">iOS / iPadOS</span>
-                    </div>
-                    <span class="text-xs font-semibold px-2.5 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 rounded-md" data-key="status_soon">Хутка</span>
-                </div>
-                <!-- Desktop -->
-                <div class="bg-tg-card dark:bg-tg-cardDark p-4 rounded-xl border border-gray-100 dark:border-none flex items-center justify-between opacity-80 hover:opacity-100 transition-opacity">
-                    <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 flex items-center justify-center text-tg-text dark:text-tg-textDark">
-                            <i data-lucide="monitor" class="w-4 h-4"></i>
-                        </div>
-                        <span class="font-medium text-tg-text dark:text-tg-textDark">Desktop</span>
-                    </div>
-                    <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 text-gray-600 dark:bg-white/10 dark:text-gray-400 rounded-md" data-key="status_later">Пазьней</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Creative Vocabulary Section -->
-        <section class="animate-fade-in" style="animation-delay: 0.15s;">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold mb-2" data-key="vocab_title">Жывая мова</h2>
-                <p class="text-tg-hint dark:text-tg-hintDark max-w-xl mx-auto" data-key="vocab_subtitle">Мы спрашчаем грувасткія канструкцыі і дадаем інтэрфэйсу беларускага калярыту.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                
-                <!-- Card 1: Messages -->
-                <div class="group bg-white dark:bg-tg-cardDark rounded-2xl p-6 border border-gray-100 dark:border-none shadow-sm hover:shadow-md transition-all hover:-translate-y-1 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-tg-blue/10 dark:bg-tg-blueDark/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                    
-                    <div class="flex items-center gap-3 mb-4 text-tg-blue dark:text-tg-blueDark">
-                        <i data-lucide="message-square" class="w-6 h-6"></i>
-                        <span class="text-sm font-semibold uppercase tracking-wider opacity-70" data-key="cat_text">Тэкст</span>
-                    </div>
-
-                    <div class="space-y-2">
-                        <div class="text-tg-hint dark:text-tg-hintDark line-through decoration-red-400/50 decoration-2 text-sm" data-key="word_msg_old">Паведамленьні</div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl font-bold" data-key="word_msg_new">Паведы</span>
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity transform scale-0 group-hover:scale-100 duration-300"></i>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-xs text-tg-hint dark:text-tg-hintDark border-t border-gray-100 dark:border-white/5 pt-3" data-key="word_msg_desc">
-                        Каротка, трапна і без лішніх складоў.
-                    </p>
+                    <span class="hidden xs:inline"
+                        >Telegram
+                        <span
+                            class="text-tg-blue dark:text-tg-blueDark font-normal"
+                            >Belarus</span
+                        ></span
+                    >
+                    <span class="xs:hidden"
+                        >TG
+                        <span
+                            class="text-tg-blue dark:text-tg-blueDark font-normal"
+                            >BY</span
+                        ></span
+                    >
                 </div>
 
-                <!-- Card 2: Video Messages (Kalabok) -->
-                <div class="group bg-white dark:bg-tg-cardDark rounded-2xl p-6 border border-gray-100 dark:border-none shadow-sm hover:shadow-md transition-all hover:-translate-y-1 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-orange-100 dark:bg-orange-900/20 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                    
-                    <div class="flex items-center gap-3 mb-4 text-orange-500">
-                        <i data-lucide="camera" class="w-6 h-6"></i>
-                        <span class="text-sm font-semibold uppercase tracking-wider opacity-70" data-key="cat_video">Відэа</span>
-                    </div>
-
-                    <div class="space-y-2">
-                        <div class="text-tg-hint dark:text-tg-hintDark line-through decoration-red-400/50 decoration-2 text-sm" data-key="word_video_old">Відэапаведамленьне</div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl font-bold" data-key="word_video_new">Калабок</span>
-                            <div class="w-5 h-5 rounded-full border-2 border-orange-500 group-hover:bg-orange-500 transition-colors"></div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-xs text-tg-hint dark:text-tg-hintDark border-t border-gray-100 dark:border-white/5 pt-3" data-key="word_video_desc">
-                        Круглае відэа? Значыць, гэта калабок!
-                    </p>
-                </div>
-
-                <!-- Card 3: Voice Messages -->
-                <div class="group bg-white dark:bg-tg-cardDark rounded-2xl p-6 border border-gray-100 dark:border-none shadow-sm hover:shadow-md transition-all hover:-translate-y-1 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-20 h-20 bg-green-100 dark:bg-green-900/20 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
-                    
-                    <div class="flex items-center gap-3 mb-4 text-green-500">
-                        <i data-lucide="mic" class="w-6 h-6"></i>
-                        <span class="text-sm font-semibold uppercase tracking-wider opacity-70" data-key="cat_audio">Гук</span>
-                    </div>
-
-                    <div class="space-y-2">
-                        <div class="text-tg-hint dark:text-tg-hintDark line-through decoration-red-400/50 decoration-2 text-sm" data-key="word_audio_old">Галасавое паведамленьне</div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-2xl font-bold" data-key="word_audio_new">Галасок</span>
-                            <i data-lucide="audio-waveform" class="w-5 h-5 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity transform scale-0 group-hover:scale-100 duration-300"></i>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-xs text-tg-hint dark:text-tg-hintDark border-t border-gray-100 dark:border-white/5 pt-3" data-key="word_audio_desc">
-                        Мілагучнае слова для вашага голасу.
-                    </p>
-                </div>
-
-            </div>
-            
-            <div class="text-center mt-6">
-                 <p class="text-sm text-tg-hint dark:text-tg-hintDark italic" data-key="vocab_more">...і многае іншае, што робіць карыстаньне праграмай прыемнейшым.</p>
-            </div>
-        </section>
-
-        <!-- Features -->
-        <section class="grid md:grid-cols-3 gap-4 animate-fade-in" style="animation-delay: 0.2s;">
-            <div class="bg-tg-card dark:bg-tg-cardDark p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div class="w-10 h-10 rounded-full bg-tg-secondary dark:bg-tg-bgDark flex items-center justify-center mb-4 text-tg-blue dark:text-tg-blueDark">
-                    <i data-lucide="book-open" class="w-5 h-5"></i>
-                </div>
-                <h3 class="font-bold mb-2" data-key="feat_classic_title">Клясычны правапіс</h3>
-                <p class="text-sm text-tg-hint dark:text-tg-hintDark" data-key="feat_classic_desc">
-                    Мы прытрымліваемся граматыкі Браніслава Тарашкевіца, каб захаваць аўтэнтычнасьць мовы.
-                </p>
-            </div>
-            <div class="bg-tg-card dark:bg-tg-cardDark p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div class="w-10 h-10 rounded-full bg-tg-secondary dark:bg-tg-bgDark flex items-center justify-center mb-4 text-tg-blue dark:text-tg-blueDark">
-                    <i data-lucide="github" class="w-5 h-5"></i>
-                </div>
-                <h3 class="font-bold mb-2" data-key="feat_open_title">Адкрыты код</h3>
-                <p class="text-sm text-tg-hint dark:text-tg-hintDark" data-key="feat_open_desc">
-                    Плятформа перакладаў адкрытая для кожнага. Вы можаце прапаноўваць свае варыянты.
-                </p>
-            </div>
-            <div class="bg-tg-card dark:bg-tg-cardDark p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div class="w-10 h-10 rounded-full bg-tg-secondary dark:bg-tg-bgDark flex items-center justify-center mb-4 text-tg-blue dark:text-tg-blueDark">
-                    <i data-lucide="moon" class="w-5 h-5"></i>
-                </div>
-                <h3 class="font-bold mb-2" data-key="feat_adapt_title">Адаптыўнасьць</h3>
-                <p class="text-sm text-tg-hint dark:text-tg-hintDark" data-key="feat_adapt_desc">
-                    Наш сайт і пераклад выглядаюць ідэальна як у сьветлай, так і ў цёмнай тэме.
-                </p>
-            </div>
-        </section>
-
-        <!-- Recruitment CTA -->
-        <section class="animate-fade-in" style="animation-delay: 0.25s;">
-            <div class="bg-gradient-to-br from-tg-blue to-blue-600 rounded-2xl p-8 text-white text-center relative overflow-hidden shadow-lg shadow-blue-500/20">
-                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
-                
-                <div class="relative z-10 space-y-4">
-                    <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm border border-white/20">
-                        <i data-lucide="users" class="w-8 h-8 text-white"></i>
-                    </div>
-                    
-                    <h2 class="text-2xl md:text-3xl font-bold" data-key="cta_title">Шукаем аднадумцаў!</h2>
-                    
-                    <p class="max-w-xl mx-auto text-blue-50 text-lg leading-relaxed" data-key="cta_desc">
-                        Мы актыўна набіраем каманду для паскарэньня перакладу. Калі вы добра валодаеце мовай, умееце рэдагаваць або проста хочаце дапамагчы тэставаньнем — далучайцеся да нас!
-                    </p>
-                    
-                    <div class="pt-2">
-                        <button class="px-8 py-3.5 bg-white text-tg-blue font-bold rounded-full hover:bg-gray-50 transition-all hover:scale-105 shadow-xl active:scale-95 flex items-center justify-center gap-2 mx-auto">
-                            <i data-lucide="pen-tool" class="w-5 h-5"></i>
-                            <span data-key="cta_btn">Запоўніць анкету</span>
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Language Switcher -->
+                    <div
+                        class="bg-tg-secondary dark:bg-black/20 rounded-lg p-1 flex text-[11px] sm:text-xs font-medium shrink-0"
+                    >
+                        <button
+                            onclick="setLanguage('cyr')"
+                            id="btn-cyr"
+                            class="px-2 py-1.5 rounded-md transition-all text-tg-hint hover:text-tg-text dark:text-tg-hintDark dark:hover:text-white"
+                        >
+                            Кірыліца
+                        </button>
+                        <button
+                            onclick="setLanguage('lat')"
+                            id="btn-lat"
+                            class="px-2 py-1.5 rounded-md transition-all text-tg-hint hover:text-tg-text dark:text-tg-hintDark dark:hover:text-white"
+                        >
+                            Łacinka
                         </button>
                     </div>
-                    
-                    <p class="text-xs text-blue-200 mt-4 opacity-75" data-key="cta_note">
-                        Гэта зойме ня больш за 2 хвіліны
-                    </p>
+
+                    <!-- Theme Toggle -->
+                    <button
+                        id="theme-toggle"
+                        class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 transition-colors text-tg-hint dark:text-tg-hintDark active:scale-90"
+                    >
+                        <i
+                            data-lucide="moon"
+                            class="w-5 h-5 hidden dark:block"
+                        ></i>
+                        <i
+                            data-lucide="sun"
+                            class="w-5 h-5 block dark:hidden"
+                        ></i>
+                    </button>
                 </div>
             </div>
-        </section>
+        </header>
 
-    </main>
+        <!-- Main Content -->
+        <main
+            class="flex-grow w-full max-w-4xl mx-auto px-4 py-6 md:py-12 space-y-8 md:space-y-12"
+        >
+            <!-- Hero Section -->
+            <section class="text-center space-y-6 animate-fade-in pt-4 md:pt-0">
+                <h1
+                    class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight"
+                >
+                    <span data-key="hero_title_1">Тэлеграм па-беларуску.</span>
+                    <br />
+                    <span
+                        class="text-tg-blue dark:text-tg-blueDark"
+                        data-key="hero_title_2"
+                        >Клясычным правапісам.</span
+                    >
+                </h1>
+                <p
+                    class="text-base md:text-lg text-tg-hint dark:text-tg-hintDark max-w-2xl mx-auto px-2 leading-relaxed"
+                    data-key="hero_desc"
+                >
+                    Далучайцеся да стварэньня і тэставаньня лякалізацыі Better
+                    Belarusian. Зробім наш улюбёны мэсэнджар родным разам.
+                </p>
 
-    <!-- Footer -->
-    <footer class="border-t border-gray-200 dark:border-white/5 bg-tg-bg dark:bg-tg-cardDark mt-auto py-8">
-        <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-tg-hint dark:text-tg-hintDark">
-            <div>
-                © 2025 Better Belarusian. <span data-key="footer_note">Неафіцыйны праект.</span>
+                <div
+                    class="flex flex-col sm:flex-row gap-3 justify-center pt-2 max-w-sm mx-auto sm:max-w-none"
+                >
+                    <!-- Mobile optimization: w-full on small screens -->
+                    <button
+                        class="w-full sm:w-auto px-6 py-3.5 bg-tg-blue hover:bg-blue-600 text-white rounded-xl sm:rounded-full font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30"
+                    >
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        <span data-key="btn_install">Усталяваць мову</span>
+                    </button>
+                    <button
+                        class="w-full sm:w-auto px-6 py-3.5 bg-white dark:bg-tg-cardDark hover:bg-gray-50 dark:hover:bg-white/5 text-tg-blue dark:text-tg-blueDark border border-tg-blue/20 dark:border-white/10 rounded-xl sm:rounded-full font-medium transition-transform active:scale-95 flex items-center justify-center gap-2"
+                    >
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                        <span data-key="btn_help">Дапамагчы перакладу</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section class="animate-fade-in" style="animation-delay: 0.1s">
+                <div
+                    class="bg-tg-card dark:bg-tg-cardDark rounded-2xl shadow-sm border border-gray-100 dark:border-none p-5 md:p-8 overflow-hidden relative"
+                >
+                    <!-- Background Decoration (lighter on mobile) -->
+                    <div
+                        class="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-tg-blue/5 dark:bg-tg-blueDark/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"
+                    ></div>
+
+                    <div class="relative z-10">
+                        <h2
+                            class="text-xl font-bold mb-6 flex items-center gap-2"
+                        >
+                            <i
+                                data-lucide="bar-chart-2"
+                                class="w-6 h-6 text-tg-blue dark:text-tg-blueDark"
+                            ></i>
+                            <span data-key="stats_title">Статус перакладу</span>
+                        </h2>
+
+                        <!-- Main Grid -->
+                        <div
+                            class="grid md:grid-cols-2 gap-6 md:gap-8 items-center"
+                        >
+                            <!-- Left: Info -->
+                            <div class="space-y-4 md:space-y-6">
+                                <!-- Platform Item -->
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400 shrink-0"
+                                    >
+                                        <i
+                                            data-lucide="smartphone"
+                                            class="w-5 h-5"
+                                        ></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <p
+                                            class="text-xs text-tg-hint dark:text-tg-hintDark uppercase tracking-wider mb-0.5"
+                                            data-key="label_platform"
+                                        >
+                                            Плятформа
+                                        </p>
+                                        <p
+                                            class="font-medium text-lg leading-none"
+                                        >
+                                            Android
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Language Item -->
+                                <div class="flex items-center gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400 shrink-0"
+                                    >
+                                        <i
+                                            data-lucide="languages"
+                                            class="w-5 h-5"
+                                        ></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <p
+                                            class="text-xs text-tg-hint dark:text-tg-hintDark uppercase tracking-wider mb-0.5"
+                                            data-key="label_lang_name"
+                                        >
+                                            Назва
+                                        </p>
+                                        <p
+                                            class="font-medium text-lg leading-none"
+                                        >
+                                            Better Belarusian
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Status Badge -->
+                                <div
+                                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-200 mt-2"
+                                >
+                                    <span class="relative flex h-2 w-2">
+                                        <span
+                                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"
+                                        ></span>
+                                        <span
+                                            class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"
+                                        ></span>
+                                    </span>
+                                    <span data-key="status_process"
+                                        >У працэсе</span
+                                    >
+                                </div>
+                            </div>
+
+                            <!-- Right: Visual Progress -->
+                            <div
+                                class="bg-tg-secondary dark:bg-tg-bgDark p-5 rounded-xl border border-gray-100 dark:border-white/5 mt-2 md:mt-0"
+                            >
+                                <div
+                                    class="flex justify-between items-end mb-2"
+                                >
+                                    <span
+                                        class="text-3xl font-bold text-tg-blue dark:text-tg-blueDark tracking-tight"
+                                        >0.91%</span
+                                    >
+                                    <span
+                                        class="text-sm text-tg-hint dark:text-tg-hintDark mb-1"
+                                        data-key="label_done"
+                                        >Гатова</span
+                                    >
+                                </div>
+
+                                <!-- Progress Bar Container -->
+                                <div
+                                    class="h-3 md:h-4 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-3 relative"
+                                >
+                                    <div
+                                        class="h-full bg-gradient-to-r from-tg-blue to-cyan-400 dark:from-tg-blueDark dark:to-cyan-600 rounded-full animate-fill-bar relative"
+                                        style="--target-width: 5%"
+                                    >
+                                        <div
+                                            class="absolute right-0 top-0 bottom-0 w-[2px] bg-white/50 shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+                                        ></div>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-between text-sm">
+                                    <span class="font-medium"
+                                        ><span data-key="count_phrases"
+                                            >93 фраз</span
+                                        ></span
+                                    >
+                                    <span
+                                        class="text-tg-hint dark:text-tg-hintDark"
+                                        ><span data-key="count_total"
+                                            >з 10 207</span
+                                        ></span
+                                    >
+                                </div>
+
+                                <p
+                                    class="mt-4 text-xs text-tg-hint dark:text-tg-hintDark leading-relaxed opacity-80"
+                                    data-key="progress_desc"
+                                >
+                                    Гэта толькі пачатак вялікага шляху.
+                                    Дапамажыце нам перакласьці астатнія 10 тысяч
+                                    радкоў.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Platforms Info -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                    <!-- iOS -->
+                    <div
+                        class="bg-tg-card dark:bg-tg-cardDark p-4 rounded-xl border border-gray-100 dark:border-none flex items-center justify-between shadow-sm active:scale-[0.99] transition-transform"
+                    >
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 flex items-center justify-center text-tg-text dark:text-tg-textDark"
+                            >
+                                <i
+                                    data-lucide="apple"
+                                    class="w-4 h-4 fill-current"
+                                ></i>
+                            </div>
+                            <span
+                                class="font-medium text-tg-text dark:text-tg-textDark"
+                                >iOS / iPadOS</span
+                            >
+                        </div>
+                        <span
+                            class="text-[10px] uppercase font-bold tracking-wider px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 rounded-md"
+                            data-key="status_soon"
+                            >Хутка</span
+                        >
+                    </div>
+                    <!-- Desktop -->
+                    <div
+                        class="bg-tg-card dark:bg-tg-cardDark p-4 rounded-xl border border-gray-100 dark:border-none flex items-center justify-between shadow-sm active:scale-[0.99] transition-transform"
+                    >
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-white/5 flex items-center justify-center text-tg-text dark:text-tg-textDark"
+                            >
+                                <i data-lucide="monitor" class="w-4 h-4"></i>
+                            </div>
+                            <span
+                                class="font-medium text-tg-text dark:text-tg-textDark"
+                                >Desktop</span
+                            >
+                        </div>
+                        <span
+                            class="text-[10px] uppercase font-bold tracking-wider px-2 py-1 bg-gray-100 text-gray-600 dark:bg-white/10 dark:text-gray-400 rounded-md"
+                            data-key="status_later"
+                            >Пазьней</span
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <!-- Creative Vocabulary Section -->
+            <section class="animate-fade-in" style="animation-delay: 0.15s">
+                <div class="text-center mb-6 md:mb-8">
+                    <h2 class="text-2xl font-bold mb-2" data-key="vocab_title">
+                        Жывая мова
+                    </h2>
+                    <p
+                        class="text-tg-hint dark:text-tg-hintDark max-w-xl mx-auto text-sm md:text-base"
+                        data-key="vocab_subtitle"
+                    >
+                        Мы спрашчаем грувасткія канструкцыі і дадаем інтэрфэйсу
+                        беларускага калярыту.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    <!-- Card 1: Messages -->
+                    <div
+                        class="group bg-white dark:bg-tg-cardDark rounded-2xl p-5 border border-gray-100 dark:border-none shadow-sm relative overflow-hidden active:scale-[0.99] transition-transform"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-16 h-16 bg-tg-blue/10 dark:bg-tg-blueDark/10 rounded-bl-full -mr-3 -mt-3"
+                        ></div>
+
+                        <div
+                            class="flex items-center gap-3 mb-3 text-tg-blue dark:text-tg-blueDark"
+                        >
+                            <i data-lucide="message-square" class="w-5 h-5"></i>
+                            <span
+                                class="text-xs font-bold uppercase tracking-widest opacity-70"
+                                data-key="cat_text"
+                                >Тэкст</span
+                            >
+                        </div>
+
+                        <div class="space-y-1">
+                            <div
+                                class="text-tg-hint dark:text-tg-hintDark line-through decoration-red-400/50 decoration-2 text-xs"
+                                data-key="word_msg_old"
+                            >
+                                Паведамленьні
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="text-xl font-bold"
+                                    data-key="word_msg_new"
+                                    >Паведы</span
+                                >
+                                <i
+                                    data-lucide="check-circle-2"
+                                    class="w-4 h-4 text-green-500"
+                                ></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Video Messages (Kalabok) -->
+                    <div
+                        class="group bg-white dark:bg-tg-cardDark rounded-2xl p-5 border border-gray-100 dark:border-none shadow-sm relative overflow-hidden active:scale-[0.99] transition-transform"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-16 h-16 bg-orange-100 dark:bg-orange-900/20 rounded-bl-full -mr-3 -mt-3"
+                        ></div>
+
+                        <div
+                            class="flex items-center gap-3 mb-3 text-orange-500"
+                        >
+                            <i data-lucide="camera" class="w-5 h-5"></i>
+                            <span
+                                class="text-xs font-bold uppercase tracking-widest opacity-70"
+                                data-key="cat_video"
+                                >Відэа</span
+                            >
+                        </div>
+
+                        <div class="space-y-1">
+                            <div
+                                class="text-tg-hint dark:text-tg-hintDark line-through decoration-red-400/50 decoration-2 text-xs"
+                                data-key="word_video_old"
+                            >
+                                Відэапаведамленьне
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="text-xl font-bold"
+                                    data-key="word_video_new"
+                                    >Калабок</span
+                                >
+                                <div
+                                    class="w-4 h-4 rounded-full border-2 border-orange-500 bg-orange-500"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Voice Messages -->
+                    <div
+                        class="group bg-white dark:bg-tg-cardDark rounded-2xl p-5 border border-gray-100 dark:border-none shadow-sm relative overflow-hidden active:scale-[0.99] transition-transform"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-bl-full -mr-3 -mt-3"
+                        ></div>
+
+                        <div
+                            class="flex items-center gap-3 mb-3 text-green-500"
+                        >
+                            <i data-lucide="mic" class="w-5 h-5"></i>
+                            <span
+                                class="text-xs font-bold uppercase tracking-widest opacity-70"
+                                data-key="cat_audio"
+                                >Гук</span
+                            >
+                        </div>
+
+                        <div class="space-y-1">
+                            <div
+                                class="text-tg-hint dark:text-tg-hintDark line-through decoration-red-400/50 decoration-2 text-xs"
+                                data-key="word_audio_old"
+                            >
+                                Галасавое паведамленьне
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="text-xl font-bold"
+                                    data-key="word_audio_new"
+                                    >Галасок</span
+                                >
+                                <i
+                                    data-lucide="audio-waveform"
+                                    class="w-4 h-4 text-green-500"
+                                ></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-6">
+                    <p
+                        class="text-xs md:text-sm text-tg-hint dark:text-tg-hintDark italic opacity-75"
+                        data-key="vocab_more"
+                    >
+                        ...і многае іншае, што робіць карыстаньне праграмай
+                        прыемнейшым.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section
+                class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 animate-fade-in"
+                style="animation-delay: 0.2s"
+            >
+                <div
+                    class="bg-tg-card dark:bg-tg-cardDark p-5 rounded-xl shadow-sm flex items-start md:block gap-4"
+                >
+                    <div
+                        class="w-10 h-10 rounded-full bg-tg-secondary dark:bg-tg-bgDark flex items-center justify-center md:mb-4 text-tg-blue dark:text-tg-blueDark shrink-0"
+                    >
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3
+                            class="font-bold mb-1 md:mb-2 text-sm md:text-base"
+                            data-key="feat_classic_title"
+                        >
+                            Клясычны правапіс
+                        </h3>
+                        <p
+                            class="text-xs md:text-sm text-tg-hint dark:text-tg-hintDark leading-relaxed"
+                            data-key="feat_classic_desc"
+                        >
+                            Мы прытрымліваемся граматыкі Браніслава Тарашкевіца.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="bg-tg-card dark:bg-tg-cardDark p-5 rounded-xl shadow-sm flex items-start md:block gap-4"
+                >
+                    <div
+                        class="w-10 h-10 rounded-full bg-tg-secondary dark:bg-tg-bgDark flex items-center justify-center md:mb-4 text-tg-blue dark:text-tg-blueDark shrink-0"
+                    >
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3
+                            class="font-bold mb-1 md:mb-2 text-sm md:text-base"
+                            data-key="feat_open_title"
+                        >
+                            Адкрыты код
+                        </h3>
+                        <p
+                            class="text-xs md:text-sm text-tg-hint dark:text-tg-hintDark leading-relaxed"
+                            data-key="feat_open_desc"
+                        >
+                            Плятформа перакладаў адкрытая для кожнага.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="bg-tg-card dark:bg-tg-cardDark p-5 rounded-xl shadow-sm flex items-start md:block gap-4"
+                >
+                    <div
+                        class="w-10 h-10 rounded-full bg-tg-secondary dark:bg-tg-bgDark flex items-center justify-center md:mb-4 text-tg-blue dark:text-tg-blueDark shrink-0"
+                    >
+                        <i data-lucide="moon" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3
+                            class="font-bold mb-1 md:mb-2 text-sm md:text-base"
+                            data-key="feat_adapt_title"
+                        >
+                            Адаптыўнасьць
+                        </h3>
+                        <p
+                            class="text-xs md:text-sm text-tg-hint dark:text-tg-hintDark leading-relaxed"
+                            data-key="feat_adapt_desc"
+                        >
+                            Ідэальна выглядае ў сьветлай і цёмнай тэме.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recruitment CTA -->
+            <section
+                class="animate-fade-in pb-4"
+                style="animation-delay: 0.25s"
+            >
+                <div
+                    class="bg-gradient-to-br from-tg-blue to-blue-600 rounded-2xl p-6 md:p-8 text-white text-center relative overflow-hidden shadow-lg shadow-blue-500/20"
+                >
+                    <div
+                        class="absolute inset-0 opacity-10"
+                        style="
+                            background-image: radial-gradient(
+                                circle at 2px 2px,
+                                white 1px,
+                                transparent 0
+                            );
+                            background-size: 24px 24px;
+                        "
+                    ></div>
+
+                    <div class="relative z-10 space-y-4">
+                        <div
+                            class="w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm border border-white/20"
+                        >
+                            <i
+                                data-lucide="users"
+                                class="w-6 h-6 md:w-8 md:h-8 text-white"
+                            ></i>
+                        </div>
+
+                        <h2
+                            class="text-xl md:text-3xl font-bold"
+                            data-key="cta_title"
+                        >
+                            Шукаем аднадумцаў!
+                        </h2>
+
+                        <p
+                            class="max-w-xl mx-auto text-blue-50 text-sm md:text-lg leading-relaxed"
+                            data-key="cta_desc"
+                        >
+                            Дапамажыце нам зь перакладам, рэдагаваньнем або
+                            тэставаньнем.
+                        </p>
+
+                        <div class="pt-2">
+                            <button
+                                class="w-full sm:w-auto px-8 py-3.5 bg-white text-tg-blue font-bold rounded-xl sm:rounded-full hover:bg-gray-50 transition-all active:scale-95 flex items-center justify-center gap-2 mx-auto"
+                            >
+                                <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                                <span data-key="cta_btn">Запоўніць анкету</span>
+                            </button>
+                        </div>
+
+                        <p
+                            class="text-[10px] md:text-xs text-blue-200 mt-4 opacity-75"
+                            data-key="cta_note"
+                        >
+                            Гэта зойме ня больш за 2 хвіліны
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer
+            class="border-t border-gray-200 dark:border-white/5 bg-tg-bg dark:bg-tg-cardDark mt-auto py-6 md:py-8"
+        >
+            <div
+                class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-tg-hint dark:text-tg-hintDark text-center md:text-left"
+            >
+                <div>
+                    © 2025 Better Belarusian.
+                    <span data-key="footer_note">Неафіцыйны праект.</span>
+                </div>
+                <div class="flex gap-6">
+                    <a
+                        href="#"
+                        class="hover:text-tg-blue dark:hover:text-tg-blueDark transition-colors"
+                        data-key="footer_channel"
+                        >Telegram-канал</a
+                    >
+                    <a
+                        href="#"
+                        class="hover:text-tg-blue dark:hover:text-tg-blueDark transition-colors"
+                        data-key="footer_support"
+                        >Падтрымаць</a
+                    >
+                </div>
             </div>
-            <div class="flex gap-6">
-                <a href="#" class="hover:text-tg-blue dark:hover:text-tg-blueDark transition-colors" data-key="footer_channel">Telegram-канал</a>
-                <a href="#" class="hover:text-tg-blue dark:hover:text-tg-blueDark transition-colors" data-key="footer_support">Падтрымаць</a>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    <!-- Scripts Logic -->
-    <script src="script.js"></script>
-</body>
+        <!-- Scripts Logic -->
+        <script src="script.js"></script>
+    </body>
 </html>
