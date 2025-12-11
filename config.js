@@ -1,4 +1,4 @@
-/* config.js - Бяз зменаў */
+/* config.js - Усталяваны шрыфт Inter */
 tailwind.config = {
   darkMode: "class",
   theme: {
@@ -22,7 +22,9 @@ tailwind.config = {
         },
       },
       fontFamily: {
+        // Inter цяпер асноўны шрыфт
         sans: [
+          "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -48,7 +50,7 @@ tailwind.config = {
         },
       },
       screens: {
-        xs: "375px", // Дадаў маленькі памер для iPhone SE і г.д.
+        xs: "375px",
         sm: "640px",
         md: "768px",
         lg: "1024px",
