@@ -1,0 +1,18 @@
+/* Файл стыляў (style.css)
+   Тут знаходзяцца толькі кастамныя налады, якія не пакрывае Tailwind.
+*/
+
+/* Custom scrollbar to match Telegram Desktop */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #cdd1d4;
+    border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+    background: #2f3946;
+}
