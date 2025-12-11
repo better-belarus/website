@@ -16,8 +16,8 @@ const translations = {
     label_lang_name: "Назва",
     status_process: "У працэсе",
     label_done: "Гатова",
-    count_phrases: "661",
-    count_total: "10 207",
+    count_phrases: "661 радкоў",
+    count_total: "з 10 207",
     progress_desc:
       "Гэта толькі пачатак вялікага шляху. Дапамажыце нам перакласьці астатнія 10 тысяч радкоў.",
     status_soon: "Хутка",
@@ -65,8 +65,8 @@ const translations = {
     label_lang_name: "Nazva",
     status_process: "U pracesie",
     label_done: "Hatova",
-    count_phrases: "661",
-    count_total: "10 207",
+    count_phrases: "661 radkoŭ",
+    count_total: "z 10 207",
     progress_desc:
       "Heta tolki pačatak vialikaha šlachu. Dapamažycie nam pierakłaści astatnija 10 tysiač radkoŭ.",
     status_soon: "Chutka",
@@ -103,6 +103,55 @@ const translations = {
     footer_channel: "Telegram-kanał",
     footer_support: "Padtrymać",
   },
+  ru: {
+    hero_title_1: "Телеграм на беларуском.",
+    hero_title_2: "Классическим правописанием.",
+    hero_desc:
+      "Присоединяйтесь к созданию и тестированию локализации Better Belarusian. Сделаем наш любимый мессенджер родным вместе.",
+    btn_install: "Установить язык",
+    btn_help: "Помочь переводу",
+    stats_title: "Статус перевода",
+    label_platform: "Платформа",
+    label_lang_name: "Название",
+    status_process: "В процессе",
+    label_done: "Готово",
+    count_phrases: "661 строк",
+    count_total: "из 10 207",
+    progress_desc:
+      "Это только начало большого пути. Помогите нам перевести остальные 10 тысяч строк.",
+    status_soon: "Скоро",
+    status_later: "Позже",
+    vocab_title: "Живой язык",
+    vocab_subtitle:
+      "Мы упрощаем громоздкие конструкции и добавляем интерфейсу беларуского колорита.",
+    cat_text: "Текст",
+    word_msg_old: "Паведамленні", // Арыгінал пакідаем
+    word_msg_new: "Паведы", // Арыгінал пакідаем
+    word_msg_desc: "Кратко, метко и без лишних слогов.",
+    cat_video: "Видео",
+    word_video_old: "Відэапаведамленьне",
+    word_video_new: "Калабок",
+    word_video_desc: "Круглое видео? Значит, это колобок!",
+    cat_audio: "Звук",
+    word_audio_old: "Галасавое паведамленьне",
+    word_audio_new: "Галасок",
+    word_audio_desc: "Благозвучное слово для вашего голоса.",
+    vocab_more:
+      "...и многое другое, что делает использование программы приятнее.",
+    feat_classic_title: "Классическое правописание",
+    feat_classic_desc: "Мы придерживаемся грамматики Бронислава Тарашкевича.",
+    feat_open_title: "Открытый код",
+    feat_open_desc: "Платформа переводов открыта для каждого.",
+    feat_adapt_title: "Адаптивность",
+    feat_adapt_desc: "Идеально выглядит в светлой и темной теме.",
+    cta_title: "Ищем единомышленников!",
+    cta_desc: "Помогите нам с переводом, редактированием или тестированием.",
+    cta_btn: "Заполнить анкету",
+    cta_note: "Это займет не более 2 минут",
+    footer_note: "Неофициальный проект.",
+    footer_channel: "Telegram-канал",
+    footer_support: "Поддержать",
+  },
 };
 
 function setLanguage(lang) {
@@ -115,43 +164,34 @@ function setLanguage(lang) {
     }
   });
 
-  const btnCyr = document.getElementById("btn-cyr");
-  const btnLat = document.getElementById("btn-lat");
+  const btns = {
+    cyr: document.getElementById("btn-cyr"),
+    lat: document.getElementById("btn-lat"),
+    ru: document.getElementById("btn-ru"),
+  };
 
-  if (lang === "cyr") {
-    btnCyr.classList.add(
+  // Reset all buttons to inactive state
+  Object.values(btns).forEach((btn) => {
+    btn.classList.remove(
       "bg-white",
       "dark:bg-tg-cardDark",
       "shadow-sm",
       "text-tg-text",
       "dark:text-white",
     );
-    btnCyr.classList.remove("text-tg-hint", "dark:text-tg-hintDark");
-    btnLat.classList.remove(
+    btn.classList.add("text-tg-hint", "dark:text-tg-hintDark");
+  });
+
+  // Set active button
+  if (btns[lang]) {
+    btns[lang].classList.add(
       "bg-white",
       "dark:bg-tg-cardDark",
       "shadow-sm",
       "text-tg-text",
       "dark:text-white",
     );
-    btnLat.classList.add("text-tg-hint", "dark:text-tg-hintDark");
-  } else {
-    btnLat.classList.add(
-      "bg-white",
-      "dark:bg-tg-cardDark",
-      "shadow-sm",
-      "text-tg-text",
-      "dark:text-white",
-    );
-    btnLat.classList.remove("text-tg-hint", "dark:text-tg-hintDark");
-    btnCyr.classList.remove(
-      "bg-white",
-      "dark:bg-tg-cardDark",
-      "shadow-sm",
-      "text-tg-text",
-      "dark:text-white",
-    );
-    btnCyr.classList.add("text-tg-hint", "dark:text-tg-hintDark");
+    btns[lang].classList.remove("text-tg-hint", "dark:text-tg-hintDark");
   }
 
   localStorage.setItem("lang", lang);

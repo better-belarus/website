@@ -1,4 +1,4 @@
-/* config.js - Усталяваны шрыфт Inter */
+/* config.js */
 tailwind.config = {
   darkMode: "class",
   theme: {
@@ -22,7 +22,6 @@ tailwind.config = {
         },
       },
       fontFamily: {
-        // Inter цяпер асноўны шрыфт
         sans: [
           "Inter",
           "-apple-system",
