@@ -1,4 +1,4 @@
-/* script.js - Бяз зменаў */
+/* script.js */
 document.addEventListener("DOMContentLoaded", () => {
   lucide.createIcons();
 });
@@ -16,7 +16,7 @@ const translations = {
     label_lang_name: "Назва",
     status_process: "У працэсе",
     label_done: "Гатова",
-    count_phrases: "93 фраз",
+    count_phrases: "661 радкоў",
     count_total: "з 10 207",
     progress_desc:
       "Гэта толькі пачатак вялікага шляху. Дапамажыце нам перакласьці астатнія 10 тысяч радкоў.",
@@ -65,7 +65,7 @@ const translations = {
     label_lang_name: "Nazva",
     status_process: "U pracesie",
     label_done: "Hatova",
-    count_phrases: "93 fraz",
+    count_phrases: "661 radkoŭ",
     count_total: "z 10 207",
     progress_desc:
       "Heta tolki pačatak vialikaha šlachu. Dapamažycie nam pierakłaści astatnija 10 tysiač radkoŭ.",
